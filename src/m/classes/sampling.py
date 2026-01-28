@@ -82,7 +82,6 @@ class sampling(object):
         md = checkfield(md, 'fieldname', 'sampling.robin', 'numel', 1, 'values', [0, 1])
         if md.sampling.robin:
             md = checkfield(md, 'fieldname', 'sampling.beta', 'NaN', 1, 'Inf', 1, 'size', [md.mesh.numberofvertices], '>', 0)
-        end
         md = checkfield(md, 'fieldname', 'sampling.alpha', 'NaN', 1, 'Inf', 1, 'numel', 1, '>', 0)
         md = checkfield(md, 'fieldname', 'sampling.seed', 'NaN', 1, 'Inf', 1, 'numel', 1)
         md = checkfield(md, 'fieldname', 'sampling.requested_outputs', 'stringrow', 1)
@@ -112,7 +111,7 @@ class sampling(object):
         nu = self.alpha - 1
         KAPPA = pow((8 * nu), 0.5) / lc
         TAU = pow((math.gamma(nu) / math.gamma(self.alpha) * (4 *  np.pi) * pow(KAPPA, 2 * nu) * pow(sigma, 2)), 0.5)
-        md.sampling.kappa = KAPPA * np.ones((md.mesh.numberofvertices, 1))
+        md.sampling.kappa = KAPPA * np.ones((md.mesh.numberofvertices))
         md.sampling.tau = TAU
 
         return md
